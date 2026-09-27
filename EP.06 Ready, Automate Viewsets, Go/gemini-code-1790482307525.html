@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0" />
+  <title>BIM && YOU | EP.06: Ready, Automate Viewsets, Go</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBlack: '#1A1D21',
+            brandCard: '#20242A',
+            brandSurface: '#15181C',
+            brandGray: '#666666',
+            brandBlue: '#38BDF8',
+            brandWhite: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background-color: #1A1D21;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .bento-card {
+      background-color: #20242A;
+      border: 1px solid #666666;
+    }
+    .sub-panel {
+      background-color: #1A1D21;
+      border: 1px solid #666666;
+    }
+    .code-pill {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: #1A1D21;
+      border: 1px solid #666666;
+      color: #38BDF8;
+      padding: 2px 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      display: inline-block;
+    }
+    .code-pill-white {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: #1A1D21;
+      border: 1px solid #666666;
+      color: #FFFFFF;
+      padding: 2px 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      display: inline-block;
+    }
+    .node-box {
+      background-color: #1A1D21;
+      border: 1px solid #38BDF8;
+      padding: 8px 10px;
+    }
+  </style>
+</head>
+<body class="w-[1920px] h-[1080px] p-7 flex flex-col justify-between select-none">
+
+  <!-- 1. SERIES HEADER -->
+  <header class="w-full bento-card px-7 py-5 flex items-center justify-between shrink-0">
+    <div class="flex flex-col gap-1.5">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs uppercase tracking-widest px-2.5 py-1 bg-brandBlack border border-brandBlue text-brandBlue font-semibold">
+          REVIT + DYNAMO PLAYER WORKFLOW
+        </span>
+        <span class="font-mono text-xs text-brandGray">
+          MODEL: <span class="text-brandWhite">NS-BIM-AR-MOI-C-ARC-300-W12_bim.consultant7.rvt</span>
+        </span>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight text-brandWhite">
+        BIM <span class="text-brandBlue">&amp;&amp;</span> YOU <span class="text-brandGray font-normal">|</span> EP.06: <span class="text-brandBlue">Ready, Automate Viewsets, Go</span>
+      </h1>
+      <p class="text-sm text-brandWhite/90 font-normal">
+        Automates Revit <span class="font-mono text-brandBlue">Publish Settings</span> viewset creation by filtering project sheets by parameter, appending the 3D coordination view, and building multi-stage cloud publish sets in one click.
+      </p>
+    </div>
+
+    <!-- Right Author / Spec Meta Table -->
+    <div class="sub-panel px-5 py-3 flex flex-col gap-1.5 text-right font-mono text-xs shrink-0">
+      <div class="flex items-center justify-end gap-3">
+        <span class="text-brandGray">AUTHOR:</span>
+        <span class="text-brandWhite font-semibold">YOUSSEF ADEL // BIM COORDINATOR</span>
+      </div>
+      <div class="flex items-center justify-end gap-3">
+        <span class="text-brandGray">INTERFACE:</span>
+        <span class="text-brandBlue">DYNAMO 2.X + DYNAMO PLAYER</span>
+      </div>
+      <div class="flex items-center justify-end gap-3">
+        <span class="text-brandGray">TARGET DIALOG:</span>
+        <span class="text-brandWhite">REVIT PUBLISH SETTINGS (CLOUD)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN BENTO GRID (12 COLUMNS, FILL HEIGHT) -->
+  <main class="w-full flex-1 my-4 grid grid-cols-12 grid-rows-12 gap-4 min-h-0">
+
+    <!-- 2. BOX A — THE MANUAL BOTTLENECK (BEFORE) [Left Column, Rows 1-6] -->
+    <section class="col-span-4 row-span-6 bento-card p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between border-b border-brandGray pb-2.5 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs font-bold px-2 py-0.5 bg-brandBlack border border-brandGray text-brandWhite">BOX A</span>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-brandGray">THE MANUAL BOTTLENECK (BEFORE)</h2>
+          </div>
+          <span class="font-mono text-xs text-brandBlue">MANUAL UI FRICTION</span>
+        </div>
+
+        <p class="text-sm text-brandWhite leading-relaxed mb-3">
+          In Revit <span class="font-mono text-brandBlue">Publish Settings</span>, preparing cloud models defaults to an unconfigured <span class="font-mono text-brandWhite">Set 1</span> or single <span class="font-mono text-brandWhite">DESIGN</span> set, forcing manual 1-by-1 view selection.
+        </p>
+
+        <!-- Simulated Revit Publish Settings Before State -->
+        <div class="sub-panel p-3 mb-3">
+          <div class="flex items-center justify-between text-xs font-mono border-b border-brandGray pb-1.5 mb-2">
+            <span class="text-brandGray">Show in list: <span class="text-brandWhite">All views and sheets in the Model</span></span>
+            <span class="text-brandBlue">[1-BY-1 CHECKBOXES]</span>
+          </div>
+          <div class="grid grid-cols-2 gap-x-3 gap-y-1 font-mono text-[11px] text-brandWhite/90">
+            <div class="flex items-center gap-1.5"><span class="text-brandGray">[ ]</span> Floor Plan: First Floor</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandGray">[ ]</span> Floor Plan: Site</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandGray">[ ]</span> Floor Plan: Ground Floor</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandBlue">[✓]</span> Floor Plan: Upper Roof</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandBlue">[✓]</span> Floor Plan: Roof Floor</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandGray">[ ]</span> RCP: First Floor</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandGray">[ ]</span> Floor Plan: Rooms Fill Color</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandGray">[ ]</span> RCP: Ground Floor</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandBlue">[✓]</span> Floor Plan: Second Floor</div>
+            <div class="flex items-center gap-1.5"><span class="text-brandGray">[ ]</span> Elevation: East</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engineering Risk Breakdown -->
+      <div class="grid grid-cols-3 gap-2 pt-2 border-t border-brandGray">
+        <div class="sub-panel p-2.5">
+          <div class="font-mono text-[10px] text-brandGray uppercase">PAIN POINT 01</div>
+          <div class="text-xs font-semibold text-brandWhite mt-0.5">Repetitive Clicking</div>
+          <div class="text-[11px] text-brandGray mt-0.5">Scrolling unfiltered model views 1 by 1.</div>
+        </div>
+        <div class="sub-panel p-2.5">
+          <div class="font-mono text-[10px] text-brandGray uppercase">PAIN POINT 02</div>
+          <div class="text-xs font-semibold text-brandWhite mt-0.5">Missing 3D View</div>
+          <div class="text-[11px] text-brandGray mt-0.5">Forgetting <span class="font-mono text-brandBlue">NAVISWORKS</span> 3D view.</div>
+        </div>
+        <div class="sub-panel p-2.5">
+          <div class="font-mono text-[10px] text-brandGray uppercase">PAIN POINT 03</div>
+          <div class="text-xs font-semibold text-brandWhite mt-0.5">Unstandardized Sets</div>
+          <div class="text-[11px] text-brandGray mt-0.5">Missing stage sets (<span class="font-mono text-brandWhite">Set 1 ??</span>).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BOX B — THE AUTOMATION PIPELINE (INPUT ➔ LOGIC ➔ OUTPUT) [Right 8 Columns, Rows 1-7] -->
+    <section class="col-span-8 row-span-7 bento-card p-5 flex flex-col justify-between">
+      <div class="flex items-center justify-between border-b border-brandGray pb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-xs font-bold px-2 py-0.5 bg-brandBlack border border-brandBlue text-brandBlue">BOX B</span>
+          <h2 class="text-sm font-bold uppercase tracking-wider text-brandGray">THE AUTOMATION PIPELINE (INPUT <span class="text-brandBlue">➔</span> LOGIC <span class="text-brandBlue">➔</span> OUTPUT)</h2>
+        </div>
+        <span class="font-mono text-xs text-brandWhite">SCRIPT: <span class="text-brandBlue">EP.06 Ready, Automate Viewsets, Go.dyn</span></span>
+      </div>
+
+      <!-- 3 Required Script Inputs Bar -->
+      <div class="grid grid-cols-3 gap-3 my-2.5">
+        <div class="sub-panel px-3.5 py-2 flex items-center justify-between">
+          <div>
+            <span class="font-mono text-[10px] text-brandBlue uppercase block">INPUT 01 // 3D COORDINATION VIEW</span>
+            <span class="text-xs font-semibold text-brandWhite">1-Your Coordination View Name</span>
+          </div>
+          <span class="code-pill">3D View: NAVISWORKS</span>
+        </div>
+        <div class="sub-panel px-3.5 py-2 flex items-center justify-between">
+          <div>
+            <span class="font-mono text-[10px] text-brandBlue uppercase block">INPUT 02 // FILTER PARAMETER</span>
+            <span class="text-xs font-semibold text-brandWhite">2-The Sheets Parameter</span>
+          </div>
+          <span class="code-pill">"Drawn By" == "AP"</span>
+        </div>
+        <div class="sub-panel px-3.5 py-2 flex items-center justify-between">
+          <div>
+            <span class="font-mono text-[10px] text-brandBlue uppercase block">INPUT 03 // TARGET VIEWSETS</span>
+            <span class="text-xs font-semibold text-brandWhite">3-Your View Sets Name</span>
+          </div>
+          <span class="code-pill">AS-BUILT | DESIGN | CONSTRUCTION</span>
+        </div>
+      </div>
+
+      <!-- 4-Stage Node Execution Graph -->
+      <div class="grid grid-cols-4 gap-3 flex-1 items-stretch my-1">
+
+        <!-- STEP 01 -->
+        <div class="sub-panel p-3.5 flex flex-col justify-between relative">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-brandBlue">01 // COLLECT &amp; FILTER</span>
+              <span class="font-mono text-[11px] text-brandGray">➔</span>
+            </div>
+            <div class="text-xs font-semibold text-brandWhite mb-2">
+              Group: <span class="font-mono text-brandBlue">Drawn By / Parameter name value is AP</span>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">Categories ➔ All Elements of Category</div>
+                <div class="font-mono text-[10px] text-brandGray">Category: <span class="text-brandWhite">Sheets</span></div>
+              </div>
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">Element.GetParameterValueByName</div>
+                <div class="font-mono text-[10px] text-brandGray">parameterName: <span class="text-brandWhite">"Drawn By"</span></div>
+              </div>
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">Code Block ➔ List.FilterByBoolMask</div>
+                <div class="font-mono text-[10px] text-brandWhite">x == "AP" ? true : false;</div>
+              </div>
+            </div>
+          </div>
+          <div class="font-mono text-[10px] text-brandGray pt-2 border-t border-brandGray">
+            OUTPUT: <span class="text-brandWhite">Filtered Sheets List (var[]..[])</span>
+          </div>
+        </div>
+
+        <!-- STEP 02 -->
+        <div class="sub-panel p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-brandBlue">02 // APPEND 3D VIEW</span>
+              <span class="font-mono text-[11px] text-brandGray">➔</span>
+            </div>
+            <div class="text-xs font-semibold text-brandWhite mb-2">
+              Group: <span class="font-mono text-brandBlue">add the 3D View to it</span>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">Views (Selection Node)</div>
+                <div class="font-mono text-[10px] text-brandGray">Selected: <span class="text-brandWhite">3D View: NAVISWORKS</span></div>
+              </div>
+              <div class="p-2.5 bg-brandCard border border-brandGray text-xs text-brandWhite/90 leading-snug">
+                Isolates the dedicated federated coordination 3D view so every publish package includes both 2D documentation and 3D model geometry.
+              </div>
+            </div>
+          </div>
+          <div class="font-mono text-[10px] text-brandGray pt-2 border-t border-brandGray">
+            OUTPUT: <span class="text-brandWhite">View Element (3D View: NAVISWORKS)</span>
+          </div>
+        </div>
+
+        <!-- STEP 03 -->
+        <div class="sub-panel p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-brandBlue">03 // MERGE &amp; FLATTEN</span>
+              <span class="font-mono text-[11px] text-brandGray">➔</span>
+            </div>
+            <div class="text-xs font-semibold text-brandWhite mb-2">
+              Group: <span class="font-mono text-brandBlue">create the list</span>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">List.Create</div>
+                <div class="font-mono text-[10px] text-brandGray">item0: <span class="text-brandWhite">Sheets[]</span> | item1: <span class="text-brandWhite">3D View</span></div>
+              </div>
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">List.Flatten</div>
+                <div class="font-mono text-[10px] text-brandGray">Normalizes nested array into 1D list</div>
+              </div>
+            </div>
+          </div>
+          <div class="font-mono text-[10px] text-brandGray pt-2 border-t border-brandGray">
+            OUTPUT: <span class="text-brandWhite">1D Array [3D View + 6 ARC Sheets]</span>
+          </div>
+        </div>
+
+        <!-- STEP 04 -->
+        <div class="sub-panel p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-brandBlue">04 // GENERATE VIEWSETS</span>
+              <span class="font-mono text-[11px] text-brandBlue">COMMIT</span>
+            </div>
+            <div class="text-xs font-semibold text-brandWhite mb-2">
+              Parallel Groups: <span class="font-mono text-brandBlue">ViewSet Creation</span>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">GROUP: AS-BUILT</div>
+                <div class="font-mono text-[10px] text-brandGray">Name: <span class="text-brandWhite">"AS-BUILT"</span> | Overwrite: <span class="text-brandBlue">True</span></div>
+              </div>
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">GROUP: DESIGN</div>
+                <div class="font-mono text-[10px] text-brandGray">Name: <span class="text-brandWhite">"DESIGN"</span> | Overwrite: <span class="text-brandBlue">True</span></div>
+              </div>
+              <div class="node-box">
+                <div class="font-mono text-[11px] text-brandBlue font-semibold">GROUP: CONSTRUCTION</div>
+                <div class="font-mono text-[10px] text-brandGray">Name: <span class="text-brandWhite">"CONSTRUCTION"</span> | Overwrite: <span class="text-brandBlue">True</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="font-mono text-[10px] text-brandGray pt-2 border-t border-brandGray">
+            TRIGGER: <span class="text-brandBlue">Dynamo Player 1-Click Run</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. BOX C — TECHNICAL STACK & RULES [Left Column, Rows 7-12] -->
+    <section class="col-span-4 row-span-6 bento-card p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between border-b border-brandGray pb-2.5 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs font-bold px-2 py-0.5 bg-brandBlack border border-brandGray text-brandWhite">BOX C</span>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-brandGray">TECHNICAL STACK &amp; RULES</h2>
+          </div>
+          <span class="font-mono text-xs text-brandBlue">NODES &amp; STANDARDS</span>
+        </div>
+
+        <!-- Exact Dynamo Nodes Table -->
+        <div class="mb-3">
+          <div class="font-mono text-[11px] text-brandGray uppercase mb-1.5">EXACT DYNAMO NODES &amp; EXPRESSIONS</div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="code-pill">Categories (Sheets)</span>
+            <span class="code-pill">All Elements of Category</span>
+            <span class="code-pill">String ("Drawn By")</span>
+            <span class="code-pill">Element.GetParameterValueByName</span>
+            <span class="code-pill-white">x == "AP" ? true : false;</span>
+            <span class="code-pill">List.FilterByBoolMask</span>
+            <span class="code-pill">Views</span>
+            <span class="code-pill">List.Create</span>
+            <span class="code-pill">List.Flatten</span>
+            <span class="code-pill">ViewSet.ByViewsName</span>
+          </div>
+        </div>
+
+        <!-- Naming Standard & Filter Rules Mini-Table -->
+        <div class="sub-panel p-3">
+          <div class="font-mono text-[11px] text-brandBlue uppercase mb-2">NAMING &amp; PARAMETER RULESET</div>
+          <table class="w-full text-left font-mono text-xs border-collapse">
+            <tbody>
+              <tr class="border-b border-brandGray/50">
+                <td class="py-1.5 text-brandGray">Sheet Filter Logic</td>
+                <td class="py-1.5 text-brandWhite text-right">Param <span class="text-brandBlue">"Drawn By"</span> == <span class="text-brandBlue">"AP"</span></td>
+              </tr>
+              <tr class="border-b border-brandGray/50">
+                <td class="py-1.5 text-brandGray">3D Coordination View</td>
+                <td class="py-1.5 text-brandWhite text-right"><span class="text-brandBlue">3D View: NAVISWORKS</span></td>
+              </tr>
+              <tr class="border-b border-brandGray/50">
+                <td class="py-1.5 text-brandGray">Target ViewSet Names</td>
+                <td class="py-1.5 text-brandWhite text-right">AS-BUILT, CONSTRUCTION, DESIGN</td>
+              </tr>
+              <tr>
+                <td class="pt-1.5 text-brandGray">Sheet Code Pattern</td>
+                <td class="pt-1.5 text-brandBlue text-right">PRJ-ARC-[ZONE]-[LVL]-DR-A-[NUM]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sub-panel px-3 py-2 flex items-center justify-between font-mono text-xs">
+        <span class="text-brandGray">EXECUTION ENGINE:</span>
+        <span class="text-brandWhite">Revit <span class="text-brandBlue">Dynamo Player</span> (Zero Graph Opening)</span>
+      </div>
+    </section>
+
+    <!-- 5. BOX D — THE DELIVERABLE & IMPACT (AFTER) [Right 8 Columns, Rows 8-12] -->
+    <section class="col-span-8 row-span-5 bento-card p-5 flex flex-col justify-between">
+      <div class="flex items-center justify-between border-b border-brandGray pb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-xs font-bold px-2 py-0.5 bg-brandBlack border border-brandBlue text-brandBlue">BOX D</span>
+          <h2 class="text-sm font-bold uppercase tracking-wider text-brandGray">THE DELIVERABLE &amp; IMPACT (AFTER)</h2>
+        </div>
+        <span class="font-mono text-xs text-brandBlue">STATUS: READY TO PUBLISH TO CLOUD</span>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 my-auto py-2 items-stretch">
+        <!-- Left 4 Cols: Created ViewSets in Publish Settings -->
+        <div class="col-span-4 sub-panel p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-[11px] text-brandGray uppercase border-b border-brandGray pb-1.5 mb-2">
+              OUTPUT 01 // SELECT SETS (PUBLISH SETTINGS)
+            </div>
+            <div class="flex flex-col gap-1.5 font-mono text-xs">
+              <div class="flex items-center justify-between p-2 bg-brandCard border border-brandBlue">
+                <span class="text-brandWhite font-semibold">[✓] AS-BUILT</span>
+                <span class="text-[10px] text-brandBlue">GENERATED</span>
+              </div>
+              <div class="flex items-center justify-between p-2 bg-brandCard border border-brandGray">
+                <span class="text-brandWhite font-semibold">[ ] CONSTRUCTION</span>
+                <span class="text-[10px] text-brandBlue">GENERATED</span>
+              </div>
+              <div class="flex items-center justify-between p-2 bg-brandCard border border-brandGray">
+                <span class="text-brandWhite font-semibold">[ ] DESIGN</span>
+                <span class="text-[10px] text-brandBlue">GENERATED</span>
+              </div>
+            </div>
+          </div>
+          <div class="font-mono text-[11px] text-brandGray pt-2 border-t border-brandGray">
+            Show in list: <span class="text-brandWhite">All views and sheets in the Set</span>
+          </div>
+        </div>
+
+        <!-- Middle 5 Cols: Populated Views & Sheets in Set -->
+        <div class="col-span-5 sub-panel p-3.5 flex flex-col justify-between">
+          <div class="font-mono text-[11px] text-brandGray uppercase border-b border-brandGray pb-1.5 mb-2 flex justify-between">
+            <span>OUTPUT 02 // COORDINATION &amp; SHEETS ADDED</span>
+            <span class="text-brandBlue">7 ITEMS SELECTED</span>
+          </div>
+          <div class="flex flex-col gap-1 font-mono text-[11px]">
+            <div class="text-brandBlue font-semibold">[✓] 3D View: NAVISWORKS</div>
+            <div class="text-brandWhite">[✓] Sheet: PRJ-ARC-01-00-DR-A-1000 - LEVEL 00 - GENERAL ARRANG...</div>
+            <div class="text-brandWhite">[✓] Sheet: PRJ-ARC-01-01-DR-A-1001 - LEVEL 01 - GENERAL ARRANG...</div>
+            <div class="text-brandWhite">[✓] Sheet: PRJ-ARC-01-ZZ-DR-A-1200 - ROOM COLOR FILL PLAN - Z0...</div>
+            <div class="text-brandWhite">[✓] Sheet: PRJ-ARC-02-00-DR-A-1000 - LEVEL 00 - GENERAL ARRANG...</div>
+            <div class="text-brandWhite">[✓] Sheet: PRJ-ARC-02-01-DR-A-1001 - LEVEL 01 - GENERAL ARRANG...</div>
+            <div class="text-brandWhite">[✓] Sheet: PRJ-ARC-02-ZZ-DR-A-1200 - ROOM COLOR FILL PLAN - Z0...</div>
+          </div>
+        </div>
+
+        <!-- Right 3 Cols: Engineering Payoff Metrics -->
+        <div class="col-span-3 flex flex-col justify-between gap-2">
+          <div class="sub-panel p-3 flex-1 flex flex-col justify-center">
+            <span class="font-mono text-[10px] text-brandGray uppercase">EXECUTION WORKFLOW</span>
+            <span class="font-mono text-xl font-bold text-brandBlue mt-0.5">1-CLICK RUN</span>
+            <span class="text-xs text-brandWhite/90 mt-0.5">Executed directly via Dynamo Player UI.</span>
+          </div>
+          <div class="sub-panel p-3 flex-1 flex flex-col justify-center">
+            <span class="font-mono text-[10px] text-brandGray uppercase">VIEWSET CONSISTENCY</span>
+            <span class="font-mono text-xl font-bold text-brandWhite mt-0.5">3 STAGE SETS</span>
+            <span class="text-xs text-brandGray mt-0.5">3D Navisworks + 6 Sheets synced.</span>
+          </div>
+          <div class="sub-panel p-3 flex-1 flex flex-col justify-center">
+            <span class="font-mono text-[10px] text-brandGray uppercase">MANUAL CHECKBOXES</span>
+            <span class="font-mono text-xl font-bold text-brandBlue mt-0.5">ZERO</span>
+            <span class="text-xs text-brandGray mt-0.5">No 1-by-1 view list scrolling.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 6. FOOTER BAR -->
+  <footer class="w-full bento-card px-7 py-3.5 flex items-center justify-between shrink-0">
+    <div class="flex items-center gap-4">
+      <span class="font-mono text-sm font-bold tracking-wider text-brandWhite">
+        BIM <span class="text-brandBlue">&amp;&amp;</span> YOU <span class="text-brandGray">//</span> Workflow Cheat Sheet
+      </span>
+      <span class="text-brandGray">|</span>
+      <span class="font-mono text-xs text-brandGray">
+        EP.06: READY, AUTOMATE VIEWSETS, GO
+      </span>
+    </div>
+
+    <div class="px-4 py-1.5 bg-brandBlue text-brandBlack font-mono text-xs font-extrabold tracking-wide uppercase">
+      Swipe for the step-by-step breakdown ➔
+    </div>
+  </footer>
+
+</body>
+</html>

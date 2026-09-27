@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0" />
+  <title>BIM && YOU | EP.06: Ready, Automate Viewsets, Go</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBlack: '#1A1D21',
+            brandCard: '#23272E',
+            brandInner: '#16191D',
+            brandGray: '#666666',
+            brandBlue: '#38BDF8',
+            brandWhite: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background-color: #1A1D21;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body class="p-7 flex flex-col gap-5 font-sans">
+
+  <!-- HEADER -->
+  <header class="bg-brandCard border-2 border-brandGray px-7 py-5 flex items-center justify-between shrink-0">
+    <div>
+      <div class="inline-block bg-brandBlue text-brandBlack font-mono font-bold text-sm px-3 py-0.5 mb-1.5 uppercase tracking-wider">
+        BIM &amp;&amp; YOU // WORKFLOW OVERVIEW
+      </div>
+      <h1 class="text-4xl font-extrabold tracking-tight text-brandWhite">
+        BIM <span class="text-brandBlue">&amp;&amp;</span> YOU <span class="text-brandGray font-light">|</span> EP.06: Ready, Automate Viewsets, Go
+      </h1>
+      <p class="text-xl text-brandWhite mt-1.5 font-medium">
+        Stop manually ticking checkboxes in Revit Publish Settings—build and populate all project Viewsets in one click.
+      </p>
+    </div>
+    <div class="text-right border-l-2 border-brandGray pl-7 shrink-0">
+      <div class="text-2xl font-bold text-brandWhite">Youssef Adel</div>
+      <div class="text-lg font-mono text-brandBlue mt-0.5">BIM Coordinator</div>
+    </div>
+  </header>
+
+  <!-- SEQUENTIAL 4-STEP GRID (LOCKED HEIGHTS, ZERO OVERFLOW) -->
+  <main class="grid grid-cols-12 grid-rows-2 gap-5 flex-1 min-h-0">
+
+    <!-- STEP 1: THE PROBLEM -->
+    <section class="col-span-5 row-span-1 bg-brandCard border-2 border-brandGray border-l-8 border-l-brandBlue p-6 flex flex-col justify-between overflow-hidden min-h-0">
+      <div class="shrink-0">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-brandBlue text-brandBlack font-mono font-bold text-base px-3 py-1">
+            STEP 1 // THE PROBLEM
+          </span>
+          <span class="font-mono text-base text-brandBlue font-semibold">MANUAL BOTTLENECK ➔</span>
+        </div>
+        <h2 class="text-2xl font-bold text-brandWhite mb-3">
+          Manual 1-by-1 View Selection
+        </h2>
+      </div>
+
+      <div class="bg-brandInner border border-brandGray p-5 flex-1 min-h-0 flex flex-col justify-center">
+        <ul class="space-y-3.5 text-lg text-brandWhite leading-snug">
+          <li class="flex items-start gap-3">
+            <span class="text-brandBlue font-mono font-bold">•</span>
+            <span>Scrolling through hundreds of model views and sheets to tick checkboxes manually before every cloud publish.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-brandBlue font-mono font-bold">•</span>
+            <span>High risk of missing updated sheets or accidentally publishing internal working views.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-brandBlue font-mono font-bold">•</span>
+            <span>Repeating the same tedious setup across multiple submission sets.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STEP 2: THE INPUTS -->
+    <section class="col-span-7 row-span-1 bg-brandCard border-2 border-brandGray border-l-8 border-l-brandBlue p-6 flex flex-col justify-between overflow-hidden min-h-0">
+      <div class="shrink-0">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-brandBlue text-brandBlack font-mono font-bold text-base px-3 py-1">
+            STEP 2 // THE INPUTS
+          </span>
+          <span class="font-mono text-base text-brandBlue font-semibold">3 SIMPLE PARAMETERS ➔</span>
+        </div>
+        <h2 class="text-2xl font-bold text-brandWhite mb-3">
+          What You Feed the Script
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 flex-1 min-h-0">
+        <div class="bg-brandInner border border-brandGray p-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-brandBlue text-base font-bold mb-1">01. COORDINATION VIEW</div>
+            <div class="text-xl font-bold text-brandWhite mb-2">3D Export View</div>
+            <p class="text-base text-brandWhite leading-snug">
+              Select the dedicated 3D view used for clash detection and model coordination.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-brandGray font-mono text-sm text-brandBlue">
+            3D View: NAVISWORKS
+          </div>
+        </div>
+
+        <div class="bg-brandInner border border-brandGray p-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-brandBlue text-base font-bold mb-1">02. FILTER RULE</div>
+            <div class="text-xl font-bold text-brandWhite mb-2">Sheet Parameter</div>
+            <p class="text-base text-brandWhite leading-snug">
+              Filter active project sheets automatically using a parameter rule.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-brandGray font-mono text-sm text-brandBlue">
+            Drawn By != "AP"
+          </div>
+        </div>
+
+        <div class="bg-brandInner border border-brandGray p-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-brandBlue text-base font-bold mb-1">03. TARGET SETS</div>
+            <div class="text-xl font-bold text-brandWhite mb-2">Viewset Names</div>
+            <p class="text-base text-brandWhite leading-snug">
+              Define the submission packages to create or update in the model.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-brandGray font-mono text-sm text-brandBlue">
+            DESIGN / CONST / AS-BUILT
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: THE CORE LOGIC -->
+    <section class="col-span-7 row-span-1 bg-brandCard border-2 border-brandGray border-l-8 border-l-brandBlue p-6 flex flex-col justify-between overflow-hidden min-h-0">
+      <div class="shrink-0">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-brandBlue text-brandBlack font-mono font-bold text-base px-3 py-1">
+            STEP 3 // THE CORE LOGIC
+          </span>
+          <span class="font-mono text-base text-brandBlue font-semibold">DYNAMO AUTOMATION PIPELINE ➔</span>
+        </div>
+        <h2 class="text-2xl font-bold text-brandWhite mb-3">
+          How the Script Processes the Data
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-4 gap-3.5 flex-1 min-h-0">
+        <!-- Stage A -->
+        <div class="bg-brandInner border border-brandGray p-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-brandBlue text-sm font-bold mb-1">STAGE A ➔</div>
+            <div class="text-lg font-bold text-brandWhite mb-1.5">Collect Sheets</div>
+            <p class="text-base text-brandWhite leading-snug">
+              Grab all sheets in the model and read their parameter values.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-brandGray font-mono text-sm text-brandBlue">
+            All Elements of Category
+          </div>
+        </div>
+
+        <!-- Stage B -->
+        <div class="bg-brandInner border border-brandGray p-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-brandBlue text-sm font-bold mb-1">STAGE B ➔</div>
+            <div class="text-lg font-bold text-brandWhite mb-1.5">Filter Sheets</div>
+            <p class="text-base text-brandWhite leading-snug">
+              Exclude placeholder sheets automatically using a boolean mask.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-brandGray font-mono text-sm text-brandBlue">
+            List.FilterByBoolMask
+          </div>
+        </div>
+
+        <!-- Stage C -->
+        <div class="bg-brandInner border border-brandGray p-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-brandBlue text-sm font-bold mb-1">STAGE C ➔</div>
+            <div class="text-lg font-bold text-brandWhite mb-1.5">Merge 3D View</div>
+            <p class="text-base text-brandWhite leading-snug">
+              Combine the 3D coordination view with the filtered sheet list.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-brandGray font-mono text-sm text-brandBlue">
+            List.Create + Flatten
+          </div>
+        </div>
+
+        <!-- Stage D -->
+        <div class="bg-brandInner border-2 border-brandBlue p-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-brandBlue text-sm font-bold mb-1">STAGE D ✔</div>
+            <div class="text-lg font-bold text-brandWhite mb-1.5">Build Viewsets</div>
+            <p class="text-base text-brandWhite leading-snug">
+              Create and overwrite the Publish Sets directly inside Revit.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-brandGray font-mono text-sm text-brandBlue">
+            ViewSet.ByViewsName
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4: THE RESULT -->
+    <section class="col-span-5 row-span-1 bg-brandCard border-2 border-brandGray border-l-8 border-l-brandBlue p-6 flex flex-col justify-between overflow-hidden min-h-0">
+      <div class="shrink-0">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-brandBlue text-brandBlack font-mono font-bold text-base px-3 py-1">
+            STEP 4 // THE RESULT
+          </span>
+          <span class="font-mono text-base text-brandBlue font-semibold">READY TO PUBLISH</span>
+        </div>
+        <h2 class="text-2xl font-bold text-brandWhite mb-2">
+          One-Click Standardized Output
+        </h2>
+        <p class="text-lg text-brandWhite leading-snug mb-3">
+          Run straight from <span class="font-mono text-brandBlue font-semibold">Dynamo Player</span>—no need to open the graph or manually check a single box.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 flex-1 min-h-0">
+        <div class="bg-brandInner border border-brandBlue p-4 flex flex-col justify-center">
+          <div class="font-mono text-sm text-brandBlue uppercase font-bold">EXECUTION METHOD</div>
+          <div class="text-3xl font-extrabold text-brandWhite mt-1">1 Click</div>
+          <div class="text-base text-brandWhite mt-1">Via Dynamo Player</div>
+        </div>
+        <div class="bg-brandInner border border-brandBlue p-4 flex flex-col justify-center">
+          <div class="font-mono text-sm text-brandBlue uppercase font-bold">QUALITY CONTROL</div>
+          <div class="text-3xl font-extrabold text-brandWhite mt-1">100% Rule-Based</div>
+          <div class="text-base text-brandWhite mt-1">3D View + Verified Sheets</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (NO SWIPE ARROW) -->
+  <footer class="bg-brandCard border-2 border-brandGray px-7 py-3.5 flex items-center justify-between shrink-0">
+    <div class="font-mono text-lg font-bold text-brandWhite tracking-wide">
+      BIM <span class="text-brandBlue">&amp;&amp;</span> YOU // Workflow Cheat Sheet
+    </div>
+    <div class="bg-brandBlue text-brandBlack font-mono font-extrabold text-lg px-6 py-1.5">
+      Swipe for the step-by-step breakdown
+    </div>
+  </footer>
+
+</body>
+</html>
