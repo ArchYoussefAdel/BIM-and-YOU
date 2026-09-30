@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, initial-scale=1.0" />
+  <title>BIM && YOU | EP.07 Workflow Cheat Sheet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #1A1D21;
+      color: #FFFFFF;
+      margin: 0;
+      padding: 0;
+    }
+    .font-mono-tech {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="w-[1920px] h-[1080px] p-6 flex flex-col gap-4 overflow-hidden bg-[#1A1D21] text-[#FFFFFF] select-none">
+
+  <!-- 1. SERIES HEADER -->
+  <header class="bg-[#23272E] border border-[#666666] rounded-xl px-7 py-4 flex items-center justify-between shrink-0">
+    <div class="flex flex-col gap-1">
+      <div class="flex items-center gap-3">
+        <span class="bg-[#38BDF8] text-[#1A1D21] font-extrabold text-base tracking-wider uppercase px-3.5 py-0.5 rounded font-mono-tech">
+          BIM AUTOMATION SERIES
+        </span>
+        <span class="text-[#38BDF8] font-mono-tech text-lg font-bold">
+          // DWG SHEET AUDIT WORKFLOW
+        </span>
+      </div>
+      <h1 class="text-5xl font-black tracking-tight text-[#FFFFFF] mt-0.5">
+        BIM <span class="text-[#38BDF8]">&amp;&amp;</span> YOU <span class="text-[#38BDF8] font-light mx-2">|</span> EP.07: CAD Is Loaded... But WHERE?!
+      </h1>
+      <p class="text-xl font-bold text-[#FFFFFF] leading-snug">
+        Find, log, and auto-open every sheet hiding CAD Links or CAD Imports in one click.
+      </p>
+    </div>
+
+    <div class="bg-[#16191D] border-2 border-[#38BDF8] rounded-xl px-6 py-3 flex flex-col items-end justify-center shrink-0">
+      <span class="font-mono-tech text-base text-[#38BDF8] font-bold uppercase tracking-wider">EXECUTION ENVIRONMENT</span>
+      <span class="text-2xl font-extrabold text-[#FFFFFF] mt-0.5">Revit + Dynamo Player</span>
+      <span class="font-mono-tech text-base font-bold text-[#38BDF8] mt-0.5">Scope: Links + Imports on Sheets</span>
+    </div>
+  </header>
+
+  <!-- MAIN 4-STEP GRID -->
+  <main class="flex-1 min-h-0 grid grid-cols-12 grid-rows-2 gap-5">
+
+    <!-- 2. STEP 1 — THE PROBLEM (MANUAL BOTTLENECK) -->
+    <section class="col-span-5 bg-[#23272E] border border-[#666666] rounded-xl flex flex-col justify-between p-5 overflow-hidden min-h-0">
+      <div class="flex items-center justify-between mb-3 shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="bg-[#38BDF8] text-[#1A1D21] font-mono-tech font-extrabold text-lg px-3.5 py-1 rounded">
+            STEP 01
+          </span>
+          <h2 class="text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
+            The Problem
+          </h2>
+        </div>
+        <span class="font-mono-tech text-base text-[#38BDF8] font-bold uppercase">Manual Bottleneck</span>
+      </div>
+
+      <div class="flex-1 min-h-0 grid grid-rows-3 gap-3">
+        <!-- Problem 1 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg px-4 py-2.5 flex flex-col justify-center">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-extrabold text-[#FFFFFF]">"Loaded" — But Where?!</span>
+            <span class="bg-[#23272E] border border-[#38BDF8] font-mono-tech text-base font-bold text-[#38BDF8] px-3 py-0.5 rounded">
+              Manage Links = Blind
+            </span>
+          </div>
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug mt-1">
+            Shows DWG links as Loaded, but hides which sheets host them.
+          </p>
+        </div>
+
+        <!-- Problem 2 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg px-4 py-2.5 flex flex-col justify-center">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-extrabold text-[#FFFFFF]">Untraceable CAD Imports</span>
+            <span class="bg-[#23272E] border border-[#38BDF8] font-mono-tech text-base font-bold text-[#38BDF8] px-3 py-0.5 rounded">
+              Health Report = Count Only
+            </span>
+          </div>
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug mt-1">
+            Flags total imported DWGs with zero sheet location data.
+          </p>
+        </div>
+
+        <!-- Problem 3 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg px-4 py-2.5 flex flex-col justify-center">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-extrabold text-[#FFFFFF]">Manual Sheet Hunting</span>
+            <span class="bg-[#23272E] border border-[#38BDF8] font-mono-tech text-base font-bold text-[#38BDF8] px-3 py-0.5 rounded">
+              100+ Sheets Pre-Issue
+            </span>
+          </div>
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug mt-1">
+            Opening sheets one-by-one wastes hours before submission deadlines.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. STEP 2 — THE INPUTS (WHAT YOU FEED IT) -->
+    <section class="col-span-7 bg-[#23272E] border border-[#666666] rounded-xl flex flex-col justify-between p-5 overflow-hidden min-h-0">
+      <div class="flex items-center justify-between mb-3 shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="bg-[#38BDF8] text-[#1A1D21] font-mono-tech font-extrabold text-lg px-3.5 py-1 rounded">
+            STEP 02
+          </span>
+          <h2 class="text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
+            The Inputs
+          </h2>
+        </div>
+        <span class="font-mono-tech text-base text-[#38BDF8] font-bold uppercase">What You Feed It</span>
+      </div>
+
+      <div class="flex-1 min-h-0 grid grid-cols-3 gap-3.5">
+        <!-- Input 1 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono-tech text-base font-extrabold text-[#38BDF8]">INPUT 01</span>
+              <span class="font-mono-tech text-base font-bold text-[#FFFFFF] bg-[#23272E] border border-[#666666] px-3 py-0.5 rounded">
+                Category
+              </span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-[#FFFFFF]">Target Sheets</h3>
+          </div>
+
+          <div class="bg-[#23272E] border-2 border-[#38BDF8] rounded-lg px-3.5 py-3 flex items-center justify-center">
+            <span class="font-mono-tech text-xl font-extrabold text-[#38BDF8]">Sheets (OST_Sheets)</span>
+          </div>
+
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug">
+            Scans deliverable sheets directly — skips working views.
+          </p>
+        </div>
+
+        <!-- Input 2 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono-tech text-base font-extrabold text-[#38BDF8]">INPUT 02</span>
+              <span class="font-mono-tech text-base font-bold text-[#FFFFFF] bg-[#23272E] border border-[#666666] px-3 py-0.5 rounded">
+                Filter Rule
+              </span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-[#FFFFFF]">Sheet Scope</h3>
+          </div>
+
+          <div class="bg-[#23272E] border-2 border-[#38BDF8] rounded-lg px-3.5 py-3 flex items-center justify-center">
+            <span class="font-mono-tech text-xl font-extrabold text-[#38BDF8]">Drawn By == "AB"</span>
+          </div>
+
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug">
+            Audits all sheets or isolates specific author sets.
+          </p>
+        </div>
+
+        <!-- Input 3 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono-tech text-base font-extrabold text-[#38BDF8]">INPUT 03</span>
+              <span class="font-mono-tech text-base font-bold text-[#FFFFFF] bg-[#23272E] border border-[#666666] px-3 py-0.5 rounded">
+                File Path
+              </span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-[#FFFFFF]">Report Target</h3>
+          </div>
+
+          <div class="bg-[#23272E] border-2 border-[#38BDF8] rounded-lg px-3.5 py-3 flex items-center justify-center">
+            <span class="font-mono-tech text-xl font-extrabold text-[#38BDF8]">Sheet_Audit_Log.txt</span>
+          </div>
+
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug">
+            Text file path to record flagged sheet names.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. STEP 3 — THE CORE LOGIC (HOW IT WORKS) -->
+    <section class="col-span-7 bg-[#23272E] border border-[#666666] rounded-xl flex flex-col justify-between p-5 overflow-hidden min-h-0">
+      <div class="flex items-center justify-between mb-3 shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="bg-[#38BDF8] text-[#1A1D21] font-mono-tech font-extrabold text-lg px-3.5 py-1 rounded">
+            STEP 03
+          </span>
+          <h2 class="text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
+            The Core Logic
+          </h2>
+        </div>
+        <span class="font-mono-tech text-base text-[#38BDF8] font-bold uppercase">4-Stage Dynamo Pipeline</span>
+      </div>
+
+      <div class="flex-1 min-h-0 grid grid-cols-4 gap-3.5">
+        <!-- Stage 1 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-[#38BDF8] text-[#1A1D21] font-mono-tech font-extrabold text-base px-2.5 py-0.5 rounded">01</span>
+              <span class="font-mono-tech text-2xl font-extrabold text-[#38BDF8]">➔</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-[#FFFFFF]">Get Sheets</h3>
+          </div>
+
+          <div class="bg-[#23272E] border-2 border-[#38BDF8] rounded-lg px-2.5 py-3 flex items-center justify-center">
+            <span class="font-mono-tech text-xl font-extrabold text-[#38BDF8]">FilterByBoolMask</span>
+          </div>
+
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug">
+            Collects project sheets matching the target filter.
+          </p>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-[#38BDF8] text-[#1A1D21] font-mono-tech font-extrabold text-base px-2.5 py-0.5 rounded">02</span>
+              <span class="font-mono-tech text-2xl font-extrabold text-[#38BDF8]">➔</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-[#FFFFFF]">Find DWGs</h3>
+          </div>
+
+          <div class="bg-[#23272E] border-2 border-[#38BDF8] rounded-lg px-2.5 py-3 flex items-center justify-center">
+            <span class="font-mono-tech text-xl font-extrabold text-[#38BDF8]">ImportInstance</span>
+          </div>
+
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug">
+            Detects both CAD Links and CAD Imports on sheets.
+          </p>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-[#38BDF8] text-[#1A1D21] font-mono-tech font-extrabold text-base px-2.5 py-0.5 rounded">03</span>
+              <span class="font-mono-tech text-2xl font-extrabold text-[#38BDF8]">➔</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-[#FFFFFF]">Flag Hits</h3>
+          </div>
+
+          <div class="bg-[#23272E] border-2 border-[#38BDF8] rounded-lg px-2.5 py-3 flex items-center justify-center">
+            <span class="font-mono-tech text-xl font-extrabold text-[#38BDF8]">HasCAD == true</span>
+          </div>
+
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug">
+            Filters list down to sheets containing active DWGs.
+          </p>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg p-3.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-[#38BDF8] text-[#1A1D21] font-mono-tech font-extrabold text-base px-2.5 py-0.5 rounded">04</span>
+              <span class="font-mono-tech text-base font-extrabold text-[#38BDF8] uppercase">EXECUTE</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-[#FFFFFF]">Log &amp; Open</h3>
+          </div>
+
+          <div class="bg-[#23272E] border-2 border-[#38BDF8] rounded-lg px-2.5 py-3 flex items-center justify-center">
+            <span class="font-mono-tech text-lg font-extrabold text-[#38BDF8]">WriteText + OpenView</span>
+          </div>
+
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug">
+            Writes report and opens flagged sheets in Revit UI.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. STEP 4 — THE RESULT (THE AUTOMATED OUTPUT) -->
+    <section class="col-span-5 bg-[#23272E] border border-[#666666] rounded-xl flex flex-col justify-between p-5 overflow-hidden min-h-0">
+      <div class="flex items-center justify-between mb-3 shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="bg-[#38BDF8] text-[#1A1D21] font-mono-tech font-extrabold text-lg px-3.5 py-1 rounded">
+            STEP 04
+          </span>
+          <h2 class="text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
+            The Result
+          </h2>
+        </div>
+        <span class="font-mono-tech text-base text-[#38BDF8] font-bold uppercase">1-Click Payoff</span>
+      </div>
+
+      <div class="flex-1 min-h-0 grid grid-rows-3 gap-3">
+        <!-- Result 1 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg px-4 py-2.5 flex flex-col justify-center">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-extrabold text-[#FFFFFF]">Instant Sheet Audit Log</span>
+            <span class="bg-[#23272E] border border-[#38BDF8] font-mono-tech text-base font-bold text-[#38BDF8] px-3 py-0.5 rounded">
+              Timestamp + SheetName
+            </span>
+          </div>
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug mt-1">
+            Exports an exact list of every sheet containing CAD files.
+          </p>
+        </div>
+
+        <!-- Result 2 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg px-4 py-2.5 flex flex-col justify-center">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-extrabold text-[#FFFFFF]">Auto-Opened Sheets in UI</span>
+            <span class="bg-[#23272E] border border-[#38BDF8] font-mono-tech text-base font-bold text-[#38BDF8] px-3 py-0.5 rounded">
+              Views Tiled on Screen
+            </span>
+          </div>
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug mt-1">
+            Opens every offending sheet immediately for fast DWG cleanup.
+          </p>
+        </div>
+
+        <!-- Result 3 -->
+        <div class="bg-[#16191D] border border-[#666666] border-l-4 border-l-[#38BDF8] rounded-lg px-4 py-2.5 flex flex-col justify-center">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-extrabold text-[#FFFFFF]">5-Second Pre-Issue QA/QC</span>
+            <span class="bg-[#23272E] border border-[#38BDF8] font-mono-tech text-base font-bold text-[#38BDF8] px-3 py-0.5 rounded">
+              Dynamo Player Ready
+            </span>
+          </div>
+          <p class="text-lg font-medium text-[#FFFFFF] leading-snug mt-1">
+            Eliminates manual sheet checking before project submissions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 6. FOOTER BAR -->
+  <footer class="bg-[#23272E] border border-[#666666] rounded-xl px-7 py-3 flex items-center justify-between shrink-0">
+    <div class="flex items-center gap-4">
+      <span class="font-mono-tech text-lg font-extrabold text-[#FFFFFF] tracking-wide">
+        BIM <span class="text-[#38BDF8]">&amp;&amp;</span> YOU // Workflow Cheat Sheet
+      </span>
+      <span class="text-[#666666]">|</span>
+      <span class="font-mono-tech text-base font-bold text-[#38BDF8]">
+        Youssef Adel // Senior BIM Coordinator
+      </span>
+    </div>
+
+    <div class="bg-[#38BDF8] text-[#1A1D21] font-black text-lg px-6 py-1.5 rounded-lg tracking-wide">
+      Swipe for the step-by-step breakdown
+    </div>
+  </footer>
+
+</body>
+</html>
