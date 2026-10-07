@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BIM && YOU Carousel - Universal Master</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #000000; margin: 0; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .slide { width: 1920px; height: 1080px; background-color: #FFFFFF; color: #000000; overflow: hidden; position: relative; border: 2px solid #38BDF8; box-sizing: border-box; }
+        
+        @media print {
+            @page { size: 1920px 1080px; margin: 0; }
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; margin: 0; background-color: #FFFFFF; }
+            .slide { page-break-after: always; break-after: page; border: none !important; margin: 0 !important; }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center">
+
+    <!-- SLIDE 1: COVER & CHEAT SHEET -->
+    <div class="slide p-6 flex flex-col gap-4">
+        <header class="flex justify-between items-center bg-[#FFFFFF] border-b-8 border-[#38BDF8] p-6">
+            <div class="max-w-[75%]">
+                <h1 class="text-5xl font-extrabold tracking-tight text-[#000000]">BIM && YOU | EP.[XX]: [EPISODE TITLE]</h1>
+                <p class="text-2xl font-bold text-[#000000] mt-2">[1-Sentence Hook Summarizing the Ultimate Benefit]</p>
+            </div>
+            <div class="w-48 h-48 rounded-full border-8 border-dashed border-[#38BDF8] bg-[#F3F2EF] flex items-center justify-center overflow-hidden shrink-0">
+                <img src="YOUR_HEADSHOT_FILENAME.png" alt="Youssef Adel" class="w-full h-full object-cover text-[#38BDF8] text-center font-bold" onerror="this.style.display='none'; this.parentNode.innerHTML='<span class=\'text-[#38BDF8] font-bold text-center px-2\'>PHOTO</span>';">
+            </div>
+        </header>
+
+        <main class="flex-1 min-h-0 grid grid-cols-12 grid-rows-2 gap-5">
+            <section class="col-span-5 row-span-1 bg-[#FFFFFF] p-5 flex flex-col justify-between overflow-hidden border-2 border-[#F3F2EF]">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-[#38BDF8] text-[#000000] font-extrabold px-3 py-1 text-lg">STEP 1</span>
+                    <h2 class="text-3xl font-extrabold text-[#000000]">THE PROBLEM</h2>
+                </div>
+                <div class="flex-1 grid gap-3.5">
+                    <div class="bg-[#F3F2EF] border-l-8 border-l-[#38BDF8] p-4 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-[#000000]">[Pain Point 1 Title]</h3>
+                            <p class="text-lg font-semibold text-[#000000] mt-1">[Pain point description]</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#F3F2EF] border-l-8 border-l-[#38BDF8] p-4 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-[#000000]">[Pain Point 2 Title]</h3>
+                            <p class="text-lg font-semibold text-[#000000] mt-1">[Pain point description]</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="col-span-7 row-span-1 bg-[#FFFFFF] p-5 flex flex-col justify-between overflow-hidden border-2 border-[#F3F2EF]">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-[#38BDF8] text-[#000000] font-extrabold px-3 py-1 text-lg">STEP 2</span>
+                    <h2 class="text-3xl font-extrabold text-[#000000]">THE SETUP</h2>
+                </div>
+                <div class="flex-1 grid grid-cols-2 gap-3.5">
+                    <div class="bg-[#F3F2EF] border-l-8 border-l-[#38BDF8] p-4 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-2xl font-extrabold text-[#000000] mb-3">[Prerequisite 1]</h3>
+                        <div class="w-full bg-[#000000] text-[#38BDF8] text-2xl font-bold mono py-3">[Tool / Input]</div>
+                    </div>
+                    <div class="bg-[#F3F2EF] border-l-8 border-l-[#38BDF8] p-4 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-2xl font-extrabold text-[#000000] mb-3">[Prerequisite 2]</h3>
+                        <div class="w-full bg-[#000000] text-[#38BDF8] text-2xl font-bold mono py-3">[Tool / Input]</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="col-span-7 row-span-1 bg-[#FFFFFF] p-5 flex flex-col justify-between overflow-hidden border-2 border-[#F3F2EF]">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-[#38BDF8] text-[#000000] font-extrabold px-3 py-1 text-lg">STEP 3</span>
+                    <h2 class="text-3xl font-extrabold text-[#000000]">THE EXECUTION</h2>
+                </div>
+                <div class="flex-1 grid grid-cols-2 gap-3.5">
+                    <div class="bg-[#F3F2EF] border-l-8 border-l-[#38BDF8] p-4 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-2xl font-extrabold text-[#000000] mb-3">[Core Action 1]</h3>
+                        <div class="w-full bg-[#000000] text-[#38BDF8] text-xl font-bold mono py-3">[Method / Step]</div>
+                    </div>
+                    <div class="bg-[#F3F2EF] border-l-8 border-l-[#38BDF8] p-4 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-2xl font-extrabold text-[#000000] mb-3">[Core Action 2]</h3>
+                        <div class="w-full bg-[#000000] text-[#38BDF8] text-xl font-bold mono py-3">[Method / Step]</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="col-span-5 row-span-1 bg-[#FFFFFF] p-5 flex flex-col justify-between overflow-hidden border-2 border-[#F3F2EF]">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-[#38BDF8] text-[#000000] font-extrabold px-3 py-1 text-lg">STEP 4</span>
+                    <h2 class="text-3xl font-extrabold text-[#000000]">THE RESULT</h2>
+                </div>
+                <div class="flex-1 grid gap-3.5">
+                    <div class="bg-[#F3F2EF] border-l-8 border-l-[#38BDF8] p-4 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-[#000000]">[Primary Benefit]</h3>
+                            <p class="text-lg font-semibold text-[#000000] mt-1">[Measurable Impact]</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#F3F2EF] border-l-8 border-l-[#38BDF8] p-4 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-[#000000]">[Secondary Benefit]</h3>
+                            <p class="text-lg font-semibold text-[#000000] mt-1">[Measurable Impact]</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="flex justify-between items-center p-4 border-t-8 border-[#F3F2EF] bg-[#FFFFFF]">
+            <span class="text-2xl font-extrabold text-[#000000]">BIM && YOU // Workflow Cheat Sheet</span>
+            <span class="bg-[#38BDF8] text-[#000000] text-xl font-extrabold px-6 py-2">SWIPE FOR THE BREAKDOWN</span>
+        </footer>
+    </div>
+
+    <!-- SLIDE 2: THE PROBLEM -->
+    <div class="slide flex flex-col justify-center p-20 bg-[#FFFFFF]">
+        <h2 class="text-7xl font-extrabold text-[#000000] mb-16 uppercase tracking-wider border-b-8 border-[#38BDF8] inline-block pb-4">The Bottleneck</h2>
+        <ul class="flex flex-col gap-10">
+            <li class="flex items-start gap-6 text-4xl">
+                <span class="text-[#38BDF8] font-extrabold">-</span>
+                <div>
+                    <strong class="text-[#000000]">[Major Pain Point 1]:</strong>
+                    <span class="text-[#000000]"> [Explanation of why this wastes time.]</span>
+                </div>
+            </li>
+            <li class="flex items-start gap-6 text-4xl">
+                <span class="text-[#38BDF8] font-extrabold">-</span>
+                <div>
+                    <strong class="text-[#000000]">[Major Pain Point 2]:</strong>
+                    <span class="text-[#000000]"> [Explanation of the workflow friction.]</span>
+                </div>
+            </li>
+            <li class="flex items-start gap-6 text-4xl">
+                <span class="text-[#38BDF8] font-extrabold">-</span>
+                <div>
+                    <strong class="text-[#000000]">[The Risk]:</strong>
+                    <span class="text-[#000000]"> [What goes wrong if you keep doing it manually.]</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 3: THE FRAMEWORK -->
+    <div class="slide flex flex-col justify-center p-20 bg-[#F3F2EF]">
+        <h2 class="text-7xl font-extrabold text-[#000000] mb-8 uppercase tracking-wider">The Approach</h2>
+        <p class="text-4xl text-[#000000] mb-16 font-semibold">[1-sentence explanation of the conceptual shift or software utilized.]</p>
+        
+        <div class="bg-[#000000] border-l-8 border-[#38BDF8] p-12">
+            <h3 class="text-6xl font-extrabold text-[#FFFFFF] mb-6">[The Tool / The Strategy]</h3>
+            <p class="text-3xl text-[#F3F2EF] leading-relaxed font-semibold">[2-sentence breakdown of how this tool or method directly solves the bottleneck.]</p>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: THE SETUP -->
+    <div class="slide flex flex-col justify-center p-20 bg-[#FFFFFF]">
+        <h2 class="text-7xl font-extrabold text-[#000000] mb-16 uppercase tracking-wider border-b-8 border-[#38BDF8] inline-block pb-4">The Prerequisites</h2>
+        <div class="grid grid-cols-2 gap-12">
+            <div class="bg
